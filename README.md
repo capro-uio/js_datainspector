@@ -21,7 +21,7 @@ Then run the instance with
 make run_webui
 ```
 
-The web application will by default be running on port `3222`, using the test data in the [data](data/) folder.
+The web application will by default be running on port `3225`, using the test data in the [data](data/) folder.
 
 
 ## Preparing to move into TSD
