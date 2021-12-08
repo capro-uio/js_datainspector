@@ -10,4 +10,4 @@ public/jquery*
 data/99999/edit*
 .DS_Store
 .Rhistory
-
+public/data
