@@ -13,7 +13,7 @@ prepare_offline:
 	make reset
 	make download
 	make clean
-	cd ../ && zip -FSr $(basename $(notdir $(BASEDIR))).zip $(basename $(notdir $(BASEDIR)))
+	cd ../ && zip -FSr $(basename $(notdir $(BASEDIR))).zip $(basename $(notdir $(BASEDIR))) -x js_quickdata/public/data/*
 
 
 # ------------------------------------------------------------------------------
