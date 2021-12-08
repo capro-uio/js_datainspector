@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+    <title>Quick data</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='bootstrap.min.css'>
+    <script src='bootstrap.bundle.min.js'></script>
+    <script src='jquery.min.js'></script>
+    <style>
+      .btn:active, .btn:focus {
+        background:#009fe3;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="navbar navbar-light bg-light shadow-sm">
+          <div id="navbar" class="container d-flex justify-content-between">
+            <a class="navbar-brand" href="#">
+              <!-- <img src="nettfix.png" alt="Nettfix" height="36"> -->
+              <h4>Quick data overviews</h4>
+            </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-lg my-3">
+      <div class="row">
+        <div class="col-md">
+          <p>
+            These are some tables created to get a quick overview of incoming data through nettskjema.
+            This is not to be confused with Nettquick, which you can see all nettskjema answers in raw format immediately.
+            The tables in this application have been processed with some script to catch inconsistencies in data, duplications
+            and also provide overview of people who have scored in worrisome ways regarding depression or cognitive test scores.
+          </p>
+        </div>
+        <div class="col-md">
+          <ul>
+            <b>The application is meant as an aid to :</b>
+            <li>debug which data is not ready to enter NOAS, and need editing with Nettfix</li>
+            <li>detect worrisome depression and cognitive scores</li>
+            <li>get an overview of which participants have answered which forms</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="nav nav-pills m-3" id="v-pills-tab" role="tablist" aria-orientation="vertical"></div>
+        </div>
+        <div class="col-9 tab-content m-5" id="v-pills-tab-content">
+          <div id="tsv" class="table table-striped table-hover table-bordered table-responsive"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="application.js"></script>
+</html>
