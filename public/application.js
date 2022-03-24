@@ -22,11 +22,15 @@ async function get_data() {
 
 async function get_tsv(){
     var getstr = "./cgi/get_data_csv.cgi?=" + this.id;
-    console.log(getstr);
     const r = await fetch(getstr);
     if (!r.ok) {
         console.log("error ok");
     }
+    e_lastmod = document.getElementById("lastmod");
+    var getstr_l = "./cgi/get_lastmod.cgi?=" + this.id;
+    const r_lastmod = await fetch(getstr_l);
+    txt = await r_lastmod.text()
+    e_lastmod.innerHTML = `Last updated on ${txt}`;
     const tsv_str = await r.text();
     const table = tsv_str.split("\n").map(l => l.split("\t"));
     if (document.querySelector('#v-pills-tab button.active') !== null) {
@@ -71,5 +75,5 @@ async function display_table(table){
 }
 
 
-// Start the whole thing, grab forms!
+// Start the whole thing, grab data list!
 get_data();
