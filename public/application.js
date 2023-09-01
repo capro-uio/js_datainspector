@@ -1,20 +1,34 @@
 ////////////////////////////////////
 // GETTING DATA FROM SYSTEM FILES //
 async function get_data() {
-    const r_data = await fetch("./data/data.json");
-    r_data_j = await r_data.json();
+    // get list of files in /data
+    const r_files = await fetch("./cgi/get_files.cgi");
+    if (!r_files.ok) {
+        console.log("error ok");
+    }
+    const files = await r_files.text();
+    // make text into array
+    files_arr = files.split("\n");
+    // remove last element, which is empty
+    files_arr.pop();
+
     let e_data = document.getElementById("v-pills-tab");
-    for(var i in r_data_j){
+    for(var i in files_arr){
+        // make pretty name display, remove .tsv and replace _ with space and capitalize
+        iname = files_arr[i].replace(".tsv", "");
+        iname = iname.replace(/_/g, " ");
+        iname = iname.charAt(0).toUpperCase() + iname.slice(1);
+        file = files_arr[i];
         var e_btn = document.createElement("button");
         e_btn.classList = "btn btn-secondary btn-lg m-2";
-        e_btn.id = i;
+        e_btn.id = file;
         e_btn.type = "button";
         e_btn.role = "tab";
         e_btn.setAttribute("data-bs-toggle", "pill");
         e_btn.setAttribute("data-bs-target", "#list-" + i);
         e_btn.setAttribute("aria-controls", "list-" + i);
         e_btn.setAttribute("aria-selected", "true");
-        e_btn.innerHTML = r_data_j[i];
+        e_btn.innerHTML = iname;
         e_btn.onclick = get_tsv;
         e_data.appendChild(e_btn);
     }
@@ -33,6 +47,8 @@ async function get_tsv(){
     e_lastmod.innerHTML = `Last updated on ${txt}`;
     const tsv_str = await r.text();
     const table = tsv_str.split("\n").map(l => l.split("\t"));
+    table.pop(); // remove last element, which is empty
+    
     if (document.querySelector('#v-pills-tab button.active') !== null) {
         document.querySelector('#v-pills-tab button.active').classList.remove('active');
     }
